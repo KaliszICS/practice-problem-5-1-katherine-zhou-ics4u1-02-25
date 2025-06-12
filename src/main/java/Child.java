@@ -1,33 +1,11 @@
-import java.util.ArrayList;
-
 public class Child extends Person{
-    private Parent parent1;
-    private Parent parent2;
-    private ArrayList<Child> siblings;
 
-
+    private Parent parent1, parent2;
+    private Child[] siblings=new Child[0];
     public Child(String name, int age, Parent parent1, Parent parent2){
         super(name, age);
-        this.parent1 = parent1;
-        this.parent2 = parent2;
-        this.siblings = new ArrayList<>();
-    }
-
-
-    public String getName(){
-        return super.getName();
-    }
-
-    public void setName(String name){
-        super.setName(name);
-    }
-
-    public int getAge() {
-        return super.getAge();
-    }
-
-    public void setAge(int age){
-        super.setAge(age);
+        this.parent1=parent1;
+        this.parent2=parent2;
     }
 
     public Parent getParent1(){
@@ -36,18 +14,26 @@ public class Child extends Person{
 
     public Parent getParent2(){
         return this.parent2;
-
     }
 
-    public ArrayList<Child> getSiblings(){
+    public void getSiblings(Child[] sibiling){
+        this.siblings=sibiling;
+    }
+
+    public Child[] getSiblings(){
         return this.siblings;
     }
 
-    public void setSiblings(ArrayList<Child> siblings){
-        this.siblings = siblings;
+    public void setSiblings(Child[] siblings){
+        this.siblings=siblings;
     }
-
-    public void addSibling(Child sibling){
-        this.siblings.add(sibling);
+    
+    public void addSibling(Child child){
+        Child[] newSibiling=new Child[this.siblings.length+1];
+        for(int i=0;i<this.siblings.length;i++){
+            newSibiling[i]=this.siblings[i];
+        }
+        newSibiling[this.siblings.length]=child;
+        this.siblings=newSibiling;
     }
 }
